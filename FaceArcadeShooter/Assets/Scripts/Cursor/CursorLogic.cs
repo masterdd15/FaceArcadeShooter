@@ -13,17 +13,11 @@ public class CursorLogic : MonoBehaviour
 {
     //The player's Camera
     public Camera cam;
+    //Canvas transform so we scale locally
     [SerializeField] private RectTransform canvasRectTransform;
-    
-    //Vector2 represents the UI Cursor's position on the screen
-    [SerializeField] Vector2 CursorPosition;
-
-    //The sprite we are using for our gameobject
-    public GameObject crosshairs;
-
+  
+    //Cursor UI Sprite Transform
     [SerializeField] RectTransform cursorTransform;
-
-    private Vector3 target;
 
 
     private void Awake()
@@ -39,11 +33,45 @@ public class CursorLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveObjectMouse();
+        //SpawnLaserMouse();
+        TestCursorToWorld();
+        MoveUIObjectMouse();
     }
 
-    public void MoveObjectMouse()
+    public void MoveUIObjectMouse()
     {
-        cursorTransform.anchoredPosition = new Vector2(Input.mousePosition.x - 25, Input.mousePosition.y - 25) / canvasRectTransform.localScale.x;
+        Vector2 alteredMousePos = new Vector2(Input.mousePosition.x - (cursorTransform.rect.width / 2), Input.mousePosition.y - (cursorTransform.rect.height / 2));
+        cursorTransform.anchoredPosition = alteredMousePos / canvasRectTransform.localScale.x;
+    }
+
+    public void SpawnLaserMouse()
+    {
+        //Draw Ray
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 10f;
+        mousePos = cam.ScreenToWorldPoint(mousePos);
+        Debug.DrawRay(transform.position, mousePos - transform.position, Color.blue);
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray,out hit,100))
+            {
+                Debug.Log(hit.transform.name);
+            }
+        }
+    }
+
+    //This method allows for us to raycast based on the placement of our UI Cursor
+    //The cursor is being moved right now with our Mouse
+    //But once we implement face tracking, we can use the same raycast to play the game
+    public void TestCursorToWorld()
+    {
+        Vector3 screenPosition = cursorTransform.position;
+        screenPosition.z = 10;
+        screenPosition = cam.ScreenToWorldPoint(screenPosition);
+        //Ray ray = cam.ScreenPointToRay(screenPosition);
+        Debug.DrawRay(transform.position, screenPosition - transform.position, Color.blue);
     }
 }
