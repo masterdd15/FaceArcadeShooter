@@ -44,8 +44,8 @@ public class CursorLogic : MonoBehaviour
 
     public void MoveUIObjectMouse()
     {
-        Vector2 alteredMousePos = new Vector2(Input.mousePosition.x - (cursorTransform.rect.width / 2), Input.mousePosition.y - (cursorTransform.rect.height / 2));
-        cursorTransform.anchoredPosition = alteredMousePos / canvasRectTransform.localScale.x;
+        //Vector2 alteredMousePos = new Vector2(Input.mousePosition.x - (cursorTransform.rect.width / 2), Input.mousePosition.y - (cursorTransform.rect.height / 2));
+        cursorTransform.anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
     }
 
 
