@@ -23,6 +23,10 @@ public class CursorLogic : MonoBehaviour
     [SerializeField] Transform gunAim;
     [SerializeField] LineRenderer lineRend;
 
+    //This is for the keyboard test
+    [SerializeField] float keySpeed = 150f;
+    Vector2 movement;
+
 
     private void Awake()
     {
@@ -39,13 +43,33 @@ public class CursorLogic : MonoBehaviour
     {
         //SpawnLaserMouse();
         TestCursorToWorld();
+
+        //use mouse
         MoveUIObjectMouse();
+
+        //Use keyboard
+        //MoveUIObjectKeypad();
     }
 
     public void MoveUIObjectMouse()
     {
         //Vector2 alteredMousePos = new Vector2(Input.mousePosition.x - (cursorTransform.rect.width / 2), Input.mousePosition.y - (cursorTransform.rect.height / 2));
         cursorTransform.anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
+    }
+
+    public void MoveUIObjectKeypad()
+    {
+        movement.x = Input.GetAxisRaw("Horizontal") * keySpeed;
+        movement.y = Input.GetAxisRaw("Vertical") * keySpeed;
+
+        if(movement.x != 0 || movement.y != 0)
+        {
+            cursorTransform.anchoredPosition += new Vector2(movement.x * Time.deltaTime, movement.y * Time.deltaTime) / canvasRectTransform.localScale.x;
+        }
+        else
+        {
+            //ursorTransform.anchoredPosition += new Vector2(movement.x * Time.deltaTime, movement.y * Time.deltaTime)
+        }
     }
 
 
@@ -64,9 +88,9 @@ public class CursorLogic : MonoBehaviour
         lineRend.SetPosition(0, gunAim.transform.position);
         lineRend.SetPosition(1, screenPosition);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(cam.WorldToScreenPoint(screenPosition));
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100))
             {
