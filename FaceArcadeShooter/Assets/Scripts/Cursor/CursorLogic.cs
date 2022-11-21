@@ -19,6 +19,10 @@ public class CursorLogic : MonoBehaviour
     //Cursor UI Sprite Transform
     [SerializeField] RectTransform cursorTransform;
 
+    //This will
+    [SerializeField] Transform gunAim;
+    [SerializeField] LineRenderer lineRend;
+
 
     private void Awake()
     {
@@ -44,24 +48,6 @@ public class CursorLogic : MonoBehaviour
         cursorTransform.anchoredPosition = alteredMousePos / canvasRectTransform.localScale.x;
     }
 
-    public void SpawnLaserMouse()
-    {
-        //Draw Ray
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 10f;
-        mousePos = cam.ScreenToWorldPoint(mousePos);
-        Debug.DrawRay(transform.position, mousePos - transform.position, Color.blue);
-
-        if(Input.GetMouseButtonDown(0))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if(Physics.Raycast(ray,out hit,100))
-            {
-                Debug.Log(hit.transform.name);
-            }
-        }
-    }
 
     //This method allows for us to raycast based on the placement of our UI Cursor
     //The cursor is being moved right now with our Mouse
@@ -73,5 +59,23 @@ public class CursorLogic : MonoBehaviour
         screenPosition = cam.ScreenToWorldPoint(screenPosition);
         //Ray ray = cam.ScreenPointToRay(screenPosition);
         Debug.DrawRay(transform.position, screenPosition - transform.position, Color.blue);
+
+        lineRend.enabled = true;
+        lineRend.SetPosition(0, gunAim.transform.position);
+        lineRend.SetPosition(1, screenPosition);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                if (hit.transform.gameObject.tag == "Enemy")
+                {
+                    Debug.Log(hit.transform.name);
+                    Destroy(hit.transform.gameObject);
+                }
+            }
+        }
     }
 }
