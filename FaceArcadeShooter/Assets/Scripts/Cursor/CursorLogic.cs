@@ -27,10 +27,13 @@ public class CursorLogic : MonoBehaviour
     [SerializeField] float keySpeed = 150f;
     Vector2 movement;
 
+    //Public float turns on and off the shooting
+    bool isShooting;
+
 
     private void Awake()
     {
-
+        isShooting = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -55,6 +58,14 @@ public class CursorLogic : MonoBehaviour
     {
         //Vector2 alteredMousePos = new Vector2(Input.mousePosition.x - (cursorTransform.rect.width / 2), Input.mousePosition.y - (cursorTransform.rect.height / 2));
         cursorTransform.anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
+        if (Input.GetMouseButton(0))
+        {
+            isShooting = true;
+        }
+        else
+        {
+            isShooting = false;
+        }
     }
 
     public void MoveUIObjectKeypad()
@@ -68,8 +79,18 @@ public class CursorLogic : MonoBehaviour
         }
         else
         {
-            //ursorTransform.anchoredPosition += new Vector2(movement.x * Time.deltaTime, movement.y * Time.deltaTime)
+            //CursorTransform.anchoredPosition += new Vector2(movement.x * Time.deltaTime, movement.y * Time.deltaTime)
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            isShooting = true;
+        }
+        else
+        {
+            isShooting = false;
+        }
+
     }
 
 
@@ -84,11 +105,8 @@ public class CursorLogic : MonoBehaviour
         //Ray ray = cam.ScreenPointToRay(screenPosition);
         Debug.DrawRay(transform.position, screenPosition - transform.position, Color.blue);
 
-        lineRend.enabled = true;
-        lineRend.SetPosition(0, gunAim.transform.position);
-        lineRend.SetPosition(1, screenPosition);
 
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        if (isShooting)
         {
             Ray ray = cam.ScreenPointToRay(cam.WorldToScreenPoint(screenPosition));
             RaycastHit hit;
