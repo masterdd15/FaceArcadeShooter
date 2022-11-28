@@ -31,7 +31,7 @@ public class EnemyLogic : MonoBehaviour
         //When a enemy spawns in, they are set to idle until ready to walk
         currentState = FBOY_STATES.IDLE;
         nma = gameObject.GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
     }
     
 
@@ -70,7 +70,7 @@ public class EnemyLogic : MonoBehaviour
     //The zombie should stay in this state until they reach the player (or die trying muhahahaha)
     private void HandleWalk()
     {
-        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+        //transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
         nma.SetDestination(player.position);
     }
 

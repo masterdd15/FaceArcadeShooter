@@ -27,6 +27,11 @@ public class CursorLogic : MonoBehaviour
     [SerializeField] float keySpeed = 150f;
     Vector2 movement;
 
+    //The number of lives a player starts with
+    [SerializeField] int startLives = 5;
+    [SerializeField] int curLives;
+    [SerializeField] TextMeshProUGUI livesTracker;
+
     //Public float turns on and off the shooting
     bool isShooting;
 
@@ -34,6 +39,7 @@ public class CursorLogic : MonoBehaviour
     private void Awake()
     {
         isShooting = false;
+        curLives = startLives;
     }
     // Start is called before the first frame update
     void Start()
@@ -52,6 +58,9 @@ public class CursorLogic : MonoBehaviour
 
         //Use keyboard
         //MoveUIObjectKeypad();
+
+        //Update player lives
+        HandlePlayerLives();
     }
 
     public void MoveUIObjectMouse()
@@ -119,5 +128,13 @@ public class CursorLogic : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    //This is the method we use to keep track of our lives.
+    //We also use this method to update the UI
+    public void HandlePlayerLives()
+    {
+        livesTracker.text = "Lives Left: " + curLives;
     }
 }
