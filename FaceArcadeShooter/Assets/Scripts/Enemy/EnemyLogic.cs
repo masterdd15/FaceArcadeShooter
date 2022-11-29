@@ -17,7 +17,8 @@ public class EnemyLogic : MonoBehaviour
 
     //Navmesh Logic
     [SerializeField] private NavMeshAgent nma;
-    [SerializeField] private Transform player;
+    [SerializeField] private Transform target;
+    [SerializeField] private GameObject player;
     
     //Variables for Idle
     bool idleEnd = false;
@@ -31,7 +32,7 @@ public class EnemyLogic : MonoBehaviour
         //When a enemy spawns in, they are set to idle until ready to walk
         currentState = FBOY_STATES.IDLE;
         nma = gameObject.GetComponent<NavMeshAgent>();
-        //player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     
 
@@ -52,7 +53,8 @@ public class EnemyLogic : MonoBehaviour
                 HandleWalk();
                 break;
             case FBOY_STATES.ATTACK:
-                HandleAttack();
+                //HandleAttack();
+                StartCoroutine(TempAttackTimer());
                 break;
             case FBOY_STATES.DEAD:
                 HandleDead();
@@ -71,14 +73,34 @@ public class EnemyLogic : MonoBehaviour
     private void HandleWalk()
     {
         //transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
-        nma.SetDestination(player.position);
+        nma.SetDestination(target.position);
+
+        //float distance = Vector3.Distance(player.transform.position, transform.position);
+        //Debug.Log(distance);
+        if(nma.remainingDistance < nma.stoppingDistance && !nma.pathPending)
+        {
+            currentState = FBOY_STATES.ATTACK;
+        }
     }
 
     //This deals damage to the player at a specific interval (when the animation swipes). Only stops if player dies
     //Or the enemy dies
     private void HandleAttack()
     {
+        StartCoroutine(TempAttackTimer());
+    }
 
+    //This is a temp coroutine to test out the lives
+    IEnumerator TempAttackTimer()
+    {
+        yield return new WaitForSeconds(1f);
+        AttackOneLife();
+    }
+
+    //This method takes away one health from the player
+    private void AttackOneLife()
+    {
+        player.GetComponent<CursorLogic>().curLives--; //Subtracts one life
     }
 
     //

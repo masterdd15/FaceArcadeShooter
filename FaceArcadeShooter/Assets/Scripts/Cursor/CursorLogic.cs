@@ -29,7 +29,7 @@ public class CursorLogic : MonoBehaviour
 
     //The number of lives a player starts with
     [SerializeField] int startLives = 5;
-    [SerializeField] int curLives;
+    [SerializeField] public int curLives;
     [SerializeField] TextMeshProUGUI livesTracker;
 
     //Public float turns on and off the shooting
