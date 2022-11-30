@@ -54,10 +54,10 @@ public class CursorLogic : MonoBehaviour
         TestCursorToWorld();
 
         //use mouse
-        MoveUIObjectMouse();
+       // MoveUIObjectMouse();
 
         //Use keyboard
-        //MoveUIObjectKeypad();
+        MoveUIObjectKeypad();
 
         //Update player lives
         HandlePlayerLives();

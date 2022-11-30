@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using OpenCvSharp;
 
 public class FaceDetector : MonoBehaviour
@@ -9,6 +10,15 @@ public class FaceDetector : MonoBehaviour
     WebCamTexture _webCamTexture;
     CascadeClassifier cascade;
     OpenCvSharp.Rect MyFace;
+
+    [SerializeField] private RectTransform canvasRectTransform;
+
+
+
+    //UI stuff
+    //Cursor UI Sprite Transform
+    [SerializeField] RectTransform testCursorTrans;
+    Vector2 faceCord;
 
     void Start()
     {
@@ -24,11 +34,16 @@ public class FaceDetector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Renderer>().material.mainTexture = _webCamTexture;
+        //Use for material
+        //GetComponent<Renderer>().material.mainTexture = _webCamTexture;
+
+        //Use in UI
+        GetComponent<RawImage>().texture = _webCamTexture;
         Mat frame = OpenCvSharp.Unity.TextureToMat(_webCamTexture);
 
         findNewFace(frame);
         display(frame);
+        TrailMove();
     }
 
     void findNewFace(Mat frame)
@@ -37,8 +52,10 @@ public class FaceDetector : MonoBehaviour
 
         if(faces.Length >= 1)
         {
-            Debug.Log(faces[0].Location);
+            //Debug.Log(faces[0].Location);
             MyFace = faces[0];
+
+            faceCord = new Vector2(faces[0].X, faces[0].Y);
         }
     }
 
@@ -50,6 +67,23 @@ public class FaceDetector : MonoBehaviour
         }
 
         Texture newtexture = OpenCvSharp.Unity.MatToTexture(frame);
-        GetComponent<Renderer>().material.mainTexture = newtexture;
+        GetComponent<RawImage>().texture = newtexture;
+        //GetComponent<Renderer>().material.mainTexture = newtexture;
+
+    }
+
+
+    //This is a trial method to see if we can correctly move the cursor
+    //Based on the players facial position
+    void TrailMove()
+    {
+        //We are subtracting our face position from the width so that it mirros the player
+        //And we are subtracting on the height because our coordinate system is inverted
+        Vector2 cursorMove = 
+            new Vector2(canvasRectTransform.rect.width - faceCord.x, 
+            canvasRectTransform.rect.height - faceCord.y);
+
+        //testCursorTrans.anchoredPosition = faceCord;
+        testCursorTrans.anchoredPosition = cursorMove;
     }
 }
