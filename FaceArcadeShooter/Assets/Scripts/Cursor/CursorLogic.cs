@@ -31,6 +31,8 @@ public class CursorLogic : MonoBehaviour
     [SerializeField] int startLives = 5;
     [SerializeField] public int curLives;
     [SerializeField] TextMeshProUGUI livesTracker;
+    [SerializeField] GameObject gameOverUI;
+    public bool isDead = false;
 
     //Public float turns on and off the shooting
     bool isShooting;
@@ -39,6 +41,7 @@ public class CursorLogic : MonoBehaviour
     private void Awake()
     {
         isShooting = false;
+        isDead = false;
         curLives = startLives;
     }
     // Start is called before the first frame update
@@ -136,5 +139,11 @@ public class CursorLogic : MonoBehaviour
     public void HandlePlayerLives()
     {
         livesTracker.text = "Lives Left: " + curLives;
+        if(curLives <= 0) //Player has died
+        {
+            gameOverUI.SetActive(true);
+            isDead = true;
+        }
+
     }
 }
