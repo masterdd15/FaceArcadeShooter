@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/FaceTracking.unity
-    guid: ab198c452cce7734f9d0ba436cb58886
+    path: Assets/Scenes/CursorSystem.unity
+    guid: 2b2d72d2e4ccfe741a086d6c63039022
   m_configObjects: {}

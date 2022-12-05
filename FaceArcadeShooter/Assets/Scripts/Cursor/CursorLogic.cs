@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 /**
  *This class will handle the logic for the Player's Cursor
@@ -37,6 +38,11 @@ public class CursorLogic : MonoBehaviour
     //Public float turns on and off the shooting
     bool isShooting;
 
+    //This gameObject stores the UI snakes that pop up when the player shoots
+    [SerializeField] GameObject snakeUI;
+    [SerializeField] Sprite snakeNorm;
+    [SerializeField] Sprite snakeHit;
+
 
     private void Awake()
     {
@@ -57,10 +63,10 @@ public class CursorLogic : MonoBehaviour
         TestCursorToWorld();
 
         //use mouse
-       // MoveUIObjectMouse();
+        MoveUIObjectMouse();
 
         //Use keyboard
-        MoveUIObjectKeypad();
+        //MoveUIObjectKeypad();
 
         //Update player lives
         HandlePlayerLives();
@@ -70,13 +76,15 @@ public class CursorLogic : MonoBehaviour
     {
         //Vector2 alteredMousePos = new Vector2(Input.mousePosition.x - (cursorTransform.rect.width / 2), Input.mousePosition.y - (cursorTransform.rect.height / 2));
         cursorTransform.anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             isShooting = true;
+            //snakeUI.SetActive(true);
         }
         else
         {
             isShooting = false;
+            //snakeUI.SetActive(false);
         }
     }
 
@@ -97,10 +105,12 @@ public class CursorLogic : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             isShooting = true;
+            snakeUI.SetActive(true);
         }
         else
         {
             isShooting = false;
+            snakeUI.SetActive(false);
         }
 
     }
@@ -126,11 +136,19 @@ public class CursorLogic : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Enemy")
                 {
+                    StartCoroutine(SnakeHit());
                     Debug.Log(hit.transform.name);
                     Destroy(hit.transform.gameObject);
                 }
             }
         }
+    }
+
+    IEnumerator SnakeHit()
+    {
+        snakeUI.GetComponent<Image>().sprite = snakeHit;
+        yield return new WaitForSeconds(.2f);
+        snakeUI.GetComponent<Image>().sprite = snakeNorm;
     }
 
 
