@@ -26,6 +26,9 @@ public class EnemyLogic : MonoBehaviour
     //Variables for Walk
 
 
+    //Variables for attacking
+    bool isAttacking = false;
+
     //Called when object is spawned (active
     private void Awake()
     {
@@ -53,8 +56,11 @@ public class EnemyLogic : MonoBehaviour
                 HandleWalk();
                 break;
             case FBOY_STATES.ATTACK:
-                //HandleAttack();
-                StartCoroutine(TempAttackTimer());
+                if (!isAttacking)
+                {
+                    HandleAttack();
+                }
+                //StartCoroutine(TempAttackTimer());
                 break;
             case FBOY_STATES.DEAD:
                 HandleDead();
@@ -87,14 +93,22 @@ public class EnemyLogic : MonoBehaviour
     //Or the enemy dies
     private void HandleAttack()
     {
-        StartCoroutine(TempAttackTimer());
+        bool checkDead = player.GetComponent<CursorLogic>().isDead;
+        if (!isAttacking && !checkDead) //If player is not dead and zombie isn't already attacking
+        {
+            isAttacking = true;
+            StartCoroutine(TempAttackTimer());
+        }
     }
 
     //This is a temp coroutine to test out the lives
     IEnumerator TempAttackTimer()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f); //We can have this wait for a specific moment in the animation
+
         AttackOneLife();
+        //If the players health is 0, we should stop attacking
+        isAttacking = false;
     }
 
     //This method takes away one health from the player
