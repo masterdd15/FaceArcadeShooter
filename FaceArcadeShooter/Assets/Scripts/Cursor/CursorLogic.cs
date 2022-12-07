@@ -43,6 +43,15 @@ public class CursorLogic : MonoBehaviour
     [SerializeField] Sprite snakeNorm;
     [SerializeField] Sprite snakeHit;
 
+    //We are going to store variables to control the smile stamina of the player
+    [SerializeField]public float stamina;
+    float maxStamina;
+
+    public Slider staminaBar;
+    public float dValue;
+    public float iValue;
+    private bool canShoot;
+
 
     private void Awake()
     {
@@ -53,7 +62,8 @@ public class CursorLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        maxStamina = stamina;
+        staminaBar.maxValue = maxStamina;
     }
 
     // Update is called once per frame
@@ -70,6 +80,8 @@ public class CursorLogic : MonoBehaviour
 
         //Update player lives
         HandlePlayerLives();
+
+        HandleStamina();
     }
 
     public void MoveUIObjectMouse()
@@ -128,7 +140,7 @@ public class CursorLogic : MonoBehaviour
         Debug.DrawRay(transform.position, screenPosition - transform.position, Color.blue);
 
 
-        if (isShooting)
+        if (isShooting && canShoot)
         {
             Ray ray = cam.ScreenPointToRay(cam.WorldToScreenPoint(screenPosition));
             RaycastHit hit;
@@ -151,6 +163,49 @@ public class CursorLogic : MonoBehaviour
         snakeUI.GetComponent<Image>().sprite = snakeHit;
         yield return new WaitForSeconds(.2f);
         snakeUI.GetComponent<Image>().sprite = snakeNorm;
+    }
+
+    private void HandleStamina()
+    {
+        //Debug.Log("Handling Stamina");
+
+        if (isShooting)
+        {
+            DecreaseEnergy();
+        }
+        else
+        {
+            IncreaseEnergy();
+        }
+
+        canShoot = stamina > 0;
+
+        Debug.Log("Stamina: " + stamina);
+        Debug.Log(canShoot);
+
+        staminaBar.value = stamina;
+    }
+
+    private void DecreaseEnergy()
+    {
+        if (stamina > 0)
+            stamina -= dValue * Time.deltaTime;
+        else
+        {
+            stamina = 0;
+        }
+    }
+
+    private void IncreaseEnergy()
+    {
+        if (stamina < maxStamina)
+        {
+            stamina += iValue * Time.deltaTime;
+        }
+        else
+        {
+            stamina = maxStamina;
+        }
     }
 
 
