@@ -21,6 +21,8 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField] private GameObject player;
 
     [SerializeField] private EnemyAnimation enemAnimController;
+
+    //Texture 
     
     //Variables for Idle
     bool idleEnd = false;
@@ -30,6 +32,9 @@ public class EnemyLogic : MonoBehaviour
 
     //Variables for attacking
     public bool isAttacking = false;
+
+    //Variable for dying
+    public bool isDying = false;
 
     //Called when object is spawned (active
     private void Awake()
@@ -141,7 +146,11 @@ public class EnemyLogic : MonoBehaviour
     {
         Debug.Log("ENEMY DIED!");
         nma.isStopped = true;
-        enemAnimController.freezeEnemy();
+        if(!isDying)
+        {
+            enemAnimController.freezeEnemy();
+            isDying = true;
+        }
     }
 
     private enum FBOY_STATES

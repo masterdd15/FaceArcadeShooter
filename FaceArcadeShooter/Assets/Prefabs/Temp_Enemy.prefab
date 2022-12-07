@@ -51,6 +51,9 @@ MonoBehaviour:
   nma: {fileID: 0}
   target: {fileID: 0}
   player: {fileID: 0}
+  enemAnimController: {fileID: 0}
+  isAttacking: 0
+  isDying: 0
 --- !u!195 &8820798696977620249
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -153,8 +156,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Male 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7019088425629644029, guid: 5da73550c90a266498e0fcd9c6437148,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 451b8dbc2718abb48b66217de5f22859, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5da73550c90a266498e0fcd9c6437148, type: 3}
+--- !u!1 &1945847586806763645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7019088425620113033, guid: 5da73550c90a266498e0fcd9c6437148,
+    type: 3}
+  m_PrefabInstance: {fileID: 8820798696675317492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1678748279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945847586806763645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1da4ea67d77f04bac14697ccec532e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1945847586806861213 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7019088425620020073, guid: 5da73550c90a266498e0fcd9c6437148,
