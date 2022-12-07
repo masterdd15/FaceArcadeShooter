@@ -71,7 +71,7 @@ public class EnemyAnimation : MonoBehaviour
 
     IEnumerator enemyDeath()
     {
-        Debug.Log("Starting Death!");
+        //Debug.Log("Starting Death!");
         enemAnimator.SetBool("isDead", true);
         while (enemAnimator.speed > .5f)
         {
@@ -87,7 +87,7 @@ public class EnemyAnimation : MonoBehaviour
             }
             yield return new WaitForSeconds(.05f);
         }
-        Debug.Log("He's back!");
+        //Debug.Log("He's back!");
         enemAnimator.speed = .5f;
         yield return new WaitForSeconds(10f);
         Destroy(transform.parent.gameObject);

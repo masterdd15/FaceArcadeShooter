@@ -76,7 +76,7 @@ public class CursorLogic : MonoBehaviour
     {
         //Vector2 alteredMousePos = new Vector2(Input.mousePosition.x - (cursorTransform.rect.width / 2), Input.mousePosition.y - (cursorTransform.rect.height / 2));
         cursorTransform.anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             isShooting = true;
             //snakeUI.SetActive(true);
@@ -134,13 +134,13 @@ public class CursorLogic : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100))
             {
-                if (hit.transform.gameObject.tag == "Enemy")
+                if (hit.transform.tag == "Enemy") //We go up in parents because it's in the mesh
                 {
 
                     StartCoroutine(SnakeHit());
-                    Debug.Log(hit.transform.name);
+                    //Debug.Log(hit.transform.name);
                     //Destroy(hit.transform.gameObject);
-                    hit.transform.gameObject.GetComponent<EnemyLogic>().SetStateDead();
+                    hit.transform.gameObject.GetComponent<HitBoxScript>().SetDeathFromHitbox();
                 }
             }
         }

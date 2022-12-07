@@ -144,10 +144,10 @@ public class EnemyLogic : MonoBehaviour
     //
     private void HandleDead()
     {
-        Debug.Log("ENEMY DIED!");
         nma.isStopped = true;
         if(!isDying)
         {
+            //Debug.Log("ENEMY DIED!");
             enemAnimController.freezeEnemy();
             isDying = true;
         }
