@@ -136,9 +136,11 @@ public class CursorLogic : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Enemy")
                 {
+
                     StartCoroutine(SnakeHit());
                     Debug.Log(hit.transform.name);
-                    Destroy(hit.transform.gameObject);
+                    //Destroy(hit.transform.gameObject);
+                    hit.transform.gameObject.GetComponent<EnemyLogic>().SetStateDead();
                 }
             }
         }

@@ -19,6 +19,8 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField] private NavMeshAgent nma;
     [SerializeField] private Transform target;
     [SerializeField] private GameObject player;
+
+    [SerializeField] private EnemyAnimation enemAnimController;
     
     //Variables for Idle
     bool idleEnd = false;
@@ -27,7 +29,7 @@ public class EnemyLogic : MonoBehaviour
 
 
     //Variables for attacking
-    bool isAttacking = false;
+    public bool isAttacking = false;
 
     //Called when object is spawned (active
     private void Awake()
@@ -36,6 +38,7 @@ public class EnemyLogic : MonoBehaviour
         currentState = FBOY_STATES.IDLE;
         nma = gameObject.GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
+        enemAnimController = GetComponentInChildren<EnemyAnimation>();
     }
     
 
@@ -80,11 +83,12 @@ public class EnemyLogic : MonoBehaviour
     {
         //transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
         nma.SetDestination(target.position);
-
+        enemAnimController.HandleWalkingTrue();
         //float distance = Vector3.Distance(player.transform.position, transform.position);
         //Debug.Log(distance);
         if(nma.remainingDistance < nma.stoppingDistance && !nma.pathPending)
         {
+            enemAnimController.HandleWalkingFalse();
             currentState = FBOY_STATES.ATTACK;
         }
     }
@@ -93,11 +97,12 @@ public class EnemyLogic : MonoBehaviour
     //Or the enemy dies
     private void HandleAttack()
     {
+        enemAnimController.HandleAttackTrue();
         bool checkDead = player.GetComponent<CursorLogic>().isDead;
         if (!isAttacking && !checkDead) //If player is not dead and zombie isn't already attacking
         {
             isAttacking = true;
-            StartCoroutine(TempAttackTimer());
+            //StartCoroutine(TempAttackTimer());
         }
     }
 
@@ -106,21 +111,37 @@ public class EnemyLogic : MonoBehaviour
     {
         yield return new WaitForSeconds(1f); //We can have this wait for a specific moment in the animation
 
-        AttackOneLife();
+        //AttackOneLife();
         //If the players health is 0, we should stop attacking
         isAttacking = false;
     }
 
     //This method takes away one health from the player
-    private void AttackOneLife()
+    //Returns true if player is still alive, and false is player is dead
+    public bool AttackOneLife()
     {
         player.GetComponent<CursorLogic>().curLives--; //Subtracts one life
+        if(player.GetComponent<CursorLogic>().curLives > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void SetStateDead()
+    {
+        currentState = FBOY_STATES.DEAD;
     }
 
     //
     private void HandleDead()
     {
-
+        Debug.Log("ENEMY DIED!");
+        nma.isStopped = true;
+        enemAnimController.freezeEnemy();
     }
 
     private enum FBOY_STATES
