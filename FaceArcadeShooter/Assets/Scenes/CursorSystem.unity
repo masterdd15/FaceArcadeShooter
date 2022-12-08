@@ -215,12 +215,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2050734285}
   - {fileID: 80791047}
   - {fileID: 1977885822}
   - {fileID: 1647832630}
-  - {fileID: 851384138}
-  - {fileID: 2050734285}
   - {fileID: 1807535147}
+  - {fileID: 851384138}
   - {fileID: 1225379641}
   - {fileID: 832275016}
   - {fileID: 1249145973}
@@ -9871,7 +9871,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 22156327}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -9987,6 +9987,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Temp_Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820798696977620252, guid: 2d3696a144ed5e2459136af72b8c2c8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d3696a144ed5e2459136af72b8c2c8b, type: 3}
@@ -10163,6 +10168,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1236348420044726584, guid: 59bef4a728ada1241b41711756195d67,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236348420044726584, guid: 59bef4a728ada1241b41711756195d67,
+        type: 3}
       propertyPath: testCursorTrans
       value: 
       objectReference: {fileID: 832275016}
@@ -10179,7 +10189,12 @@ PrefabInstance:
     - target: {fileID: 1236348420044726588, guid: 59bef4a728ada1241b41711756195d67,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236348420044726590, guid: 59bef4a728ada1241b41711756195d67,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1236348420044726591, guid: 59bef4a728ada1241b41711756195d67,
         type: 3}
@@ -10194,7 +10209,7 @@ PrefabInstance:
     - target: {fileID: 1236348420044726591, guid: 59bef4a728ada1241b41711756195d67,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1236348420044726591, guid: 59bef4a728ada1241b41711756195d67,
         type: 3}
@@ -10631,7 +10646,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh150614
+  m_Name: pb_Mesh88082
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11122,7 +11137,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh150698
+  m_Name: pb_Mesh88178
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11366,7 +11381,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh150684
+  m_Name: pb_Mesh88164
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12532,7 +12547,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 22156327}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -22911,7 +22926,7 @@ RectTransform:
   - {fileID: 425358492}
   - {fileID: 835987772}
   m_Father: {fileID: 22156327}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -22969,6 +22984,31 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1911267115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1236348420044726588, guid: 59bef4a728ada1241b41711756195d67,
+    type: 3}
+  m_PrefabInstance: {fileID: 191048967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1911267116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911267115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d597aeaa41bc8244949474135b816ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faceCord: {x: 0, y: 0}
+  centerCord: {x: 0, y: 0}
+  lastCord: {x: 0, y: 0}
+  reset: 0
+  testCursorTrans: {fileID: 832275016}
+  canvasRectTransform: {fileID: 22156327}
+  cursLog: {fileID: 0}
 --- !u!1001 &1945849128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23041,6 +23081,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Temp_Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8820798696977620252, guid: 2d3696a144ed5e2459136af72b8c2c8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d3696a144ed5e2459136af72b8c2c8b, type: 3}
 --- !u!1 &1967839548 stripped
@@ -23105,7 +23150,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 22156327}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -23156,7 +23201,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh150580
+  m_Name: pb_Mesh88048
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -32938,7 +32983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2050734285
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32952,7 +32997,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 22156327}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -33602,7 +33647,7 @@ PrefabInstance:
     - target: {fileID: 8005998391783631997, guid: 3c70a1036af4ac441bf0189e0f1a7344,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8005998391783631997, guid: 3c70a1036af4ac441bf0189e0f1a7344,
         type: 3}
@@ -33762,6 +33807,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Temp_Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820798696977620252, guid: 2d3696a144ed5e2459136af72b8c2c8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d3696a144ed5e2459136af72b8c2c8b, type: 3}

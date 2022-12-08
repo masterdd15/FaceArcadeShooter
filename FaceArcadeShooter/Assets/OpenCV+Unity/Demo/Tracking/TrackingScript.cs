@@ -35,9 +35,13 @@
 		/// </summary>
 		protected override void Awake()
 		{
-			base.Awake();
-			forceFrontalCamera = true;
-		}
+            base.Awake();
+            //forceFrontalCamera = true;
+            base.Awake();
+            forceFrontalCamera = true;
+            WebCamDevice[] devices = WebCamTexture.devices;
+            base.DeviceName = devices[0].name;
+        }
 
 		/// <summary>
 		/// Converts point from screen space into the image space

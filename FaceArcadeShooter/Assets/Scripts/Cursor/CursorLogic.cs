@@ -36,7 +36,7 @@ public class CursorLogic : MonoBehaviour
     public bool isDead = false;
 
     //Public float turns on and off the shooting
-    bool isShooting;
+    public bool isShooting;
 
     //This gameObject stores the UI snakes that pop up when the player shoots
     [SerializeField] GameObject snakeUI;
@@ -62,8 +62,8 @@ public class CursorLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxStamina = stamina;
-        staminaBar.maxValue = maxStamina;
+        //maxStamina = stamina;
+        //staminaBar.maxValue = maxStamina;
     }
 
     // Update is called once per frame
@@ -73,7 +73,7 @@ public class CursorLogic : MonoBehaviour
         TestCursorToWorld();
 
         //use mouse
-        MoveUIObjectMouse();
+        //MoveUIObjectMouse();
 
         //Use keyboard
         //MoveUIObjectKeypad();
@@ -81,7 +81,7 @@ public class CursorLogic : MonoBehaviour
         //Update player lives
         HandlePlayerLives();
 
-        HandleStamina();
+        //HandleStamina();
     }
 
     public void MoveUIObjectMouse()
@@ -122,7 +122,7 @@ public class CursorLogic : MonoBehaviour
         else
         {
             isShooting = false;
-            snakeUI.SetActive(false);
+            //snakeUI.SetActive(false);
         }
 
     }
@@ -140,7 +140,7 @@ public class CursorLogic : MonoBehaviour
         Debug.DrawRay(transform.position, screenPosition - transform.position, Color.blue);
 
 
-        if (isShooting && canShoot)
+        if (isShooting)
         {
             Ray ray = cam.ScreenPointToRay(cam.WorldToScreenPoint(screenPosition));
             RaycastHit hit;
@@ -180,8 +180,8 @@ public class CursorLogic : MonoBehaviour
 
         canShoot = stamina > 0;
 
-        Debug.Log("Stamina: " + stamina);
-        Debug.Log(canShoot);
+        //Debug.Log("Stamina: " + stamina);
+        //Debug.Log(canShoot);
 
         staminaBar.value = stamina;
     }
