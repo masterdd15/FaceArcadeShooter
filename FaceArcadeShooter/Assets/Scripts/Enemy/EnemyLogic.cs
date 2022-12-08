@@ -43,6 +43,7 @@ public class EnemyLogic : MonoBehaviour
         currentState = FBOY_STATES.IDLE;
         nma = gameObject.GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("EnemyPoint").transform;
         enemAnimController = GetComponentInChildren<EnemyAnimation>();
     }
     

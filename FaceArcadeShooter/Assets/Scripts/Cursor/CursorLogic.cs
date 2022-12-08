@@ -47,7 +47,7 @@ public class CursorLogic : MonoBehaviour
     [SerializeField]public float stamina;
     float maxStamina;
 
-    public Slider staminaBar;
+    //public Slider staminaBar;
     public float dValue;
     public float iValue;
     private bool canShoot;
@@ -183,7 +183,7 @@ public class CursorLogic : MonoBehaviour
         //Debug.Log("Stamina: " + stamina);
         //Debug.Log(canShoot);
 
-        staminaBar.value = stamina;
+        //staminaBar.value = stamina;
     }
 
     private void DecreaseEnergy()
