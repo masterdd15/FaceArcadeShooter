@@ -72,24 +72,24 @@ public class EnemyAnimation : MonoBehaviour
     IEnumerator enemyDeath()
     {
         //Debug.Log("Starting Death!");
-        enemAnimator.SetBool("isDead", true);
-        while (enemAnimator.speed > .5f)
+        //enemAnimator.SetBool("isDead", true);
+        while (enemAnimator.speed > 0f)
         {
             float remove = Random.Range(.05f, .075f);
             float newSpeed = enemAnimator.speed - remove;
-            if(newSpeed > .5f)
+            if(newSpeed > 0f)
             {
                 enemAnimator.speed = newSpeed;
             }
             else //We went over 0 so set to 0
             {
-                enemAnimator.speed = .5f;
+                enemAnimator.speed = 0f;
             }
             yield return new WaitForSeconds(.05f);
         }
         //Debug.Log("He's back!");
-        enemAnimator.speed = .5f;
-        yield return new WaitForSeconds(10f);
+        enemAnimator.speed = 0f;
+        yield return new WaitForSeconds(3f);
         Destroy(transform.parent.gameObject);
     }
 }
