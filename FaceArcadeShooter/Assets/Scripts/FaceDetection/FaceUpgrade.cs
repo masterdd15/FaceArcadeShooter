@@ -106,9 +106,13 @@ public class FaceUpgrade : MonoBehaviour
                             }
                             else
                             {
-                                cursLog.isShooting = false;
+                                //cursLog.isShooting = false;
                             }
                         }
+                    }
+                    else
+                    {
+                        cursLog.isShooting = false;
                     }
 
                 }
@@ -118,6 +122,10 @@ public class FaceUpgrade : MonoBehaviour
                 }
 
             }
+        }
+        else
+        {
+            cursLog.isShooting = false;
         }
 
 
