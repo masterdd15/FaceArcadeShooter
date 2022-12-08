@@ -76,7 +76,7 @@ public class CursorLogic : MonoBehaviour
         //MoveUIObjectMouse();
 
         //Use keyboard
-        //MoveUIObjectKeypad();
+        MoveUIObjectKeypad();
 
         //Update player lives
         HandlePlayerLives();
