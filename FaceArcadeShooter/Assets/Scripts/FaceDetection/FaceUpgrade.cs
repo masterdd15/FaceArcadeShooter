@@ -76,7 +76,7 @@ public class FaceUpgrade : MonoBehaviour
         {
             for (int i = 0; i < faces.Length; i++)
             {
-                if (faceLevelWeights[i] >= 2f)
+                if (faceLevelWeights[i] >= 3f)
                 {
 
                     faceRect = faces[i];
@@ -99,7 +99,7 @@ public class FaceUpgrade : MonoBehaviour
                         for (int j = 0; j < smiles.Length; j++)
                         {
                             smileRect = smiles[j];
-                            if (smileLevelWeights[j] >= 2f)
+                            if (smileLevelWeights[j] >= 3f)
                             {
                                 faceArea.Rectangle(smileRect, new Scalar(0, 0, 255, 0), 3);
                                 cursLog.isShooting = true;

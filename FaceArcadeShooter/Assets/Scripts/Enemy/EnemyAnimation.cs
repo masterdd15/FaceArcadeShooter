@@ -89,7 +89,7 @@ public class EnemyAnimation : MonoBehaviour
         }
         //Debug.Log("He's back!");
         enemAnimator.speed = 0f;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         Destroy(transform.parent.gameObject);
     }
 }
