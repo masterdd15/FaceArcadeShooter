@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - EnemyPoint
+  - GameManager
+  - ScoreText
+  - HighScoreText
   layers:
   - Default
   - TransparentFX

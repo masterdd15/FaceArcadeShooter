@@ -10,9 +10,16 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] float enemyIntervals;
 
+    [SerializeField] CursorLogic player;
+
     public bool isSpawning = false;
     [SerializeField] int randomValue;
-    
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<CursorLogic>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +32,14 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isSpawning)
+        if (player.curLives >= 0)
         {
-            randomValue = Random.Range(0, listEnemyPrefab.Length);
-            float newInterval = Random.Range(1, enemyIntervals);
-            StartCoroutine(spawnEnemy(randomValue, enemyIntervals));
+            if (!isSpawning)
+            {
+                randomValue = Random.Range(0, listEnemyPrefab.Length);
+                float newInterval = Random.Range(1, enemyIntervals);
+                StartCoroutine(spawnEnemy(randomValue, enemyIntervals));
+            }
         }
     }
 

@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public int score;
     [SerializeField] TextMeshProUGUI scoreText;
 
+    public int highscore;
+    [SerializeField] TextMeshProUGUI highScoreText;
+
     private void Awake()
     {
         if(manager == null)
@@ -30,6 +33,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         score = 0;
+        scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
+        highScoreText = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -41,12 +46,26 @@ public class GameManager : MonoBehaviour
             ResetTheGame();
         }
         SetScore();
+        SetHighScore();
+    }
 
-
+    void SetHighScore()
+    {
+        if(score > highscore)
+        {
+            highscore = score;
+        }
+        highScoreText.text = "High Score: " + highscore;
     }
 
     void SetScore()
     {
+        if(scoreText == null)
+        {
+            score = 0;
+            scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
+            highScoreText = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<TextMeshProUGUI>();
+        }
         scoreText.text = "Score: " + score;
     }
 
