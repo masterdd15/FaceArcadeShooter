@@ -114,6 +114,10 @@ public class EnemyLogic : MonoBehaviour
             isAttacking = true;
             //StartCoroutine(TempAttackTimer());
         }
+        else
+        {
+
+        }
     }
 
     //This is a temp coroutine to test out the lives
@@ -130,10 +134,17 @@ public class EnemyLogic : MonoBehaviour
     //Returns true if player is still alive, and false is player is dead
     public bool AttackOneLife()
     {
-        player.GetComponent<CursorLogic>().curLives--; //Subtracts one life
-        if(player.GetComponent<CursorLogic>().curLives > 0)
+        if (currentState != FBOY_STATES.DEAD)
         {
-            return true;
+            player.GetComponent<CursorLogic>().curLives--; //Subtracts one life
+            if (player.GetComponent<CursorLogic>().curLives > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {

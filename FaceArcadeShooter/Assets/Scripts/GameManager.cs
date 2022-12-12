@@ -32,14 +32,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score = 0;
-        scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
-        highScoreText = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<TextMeshProUGUI>();
+        //score = 0;
+        //scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
+        //highScoreText = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(SceneManager.GetActiveScene().buildIndex == 0) //We are in the first menu
+        {
+
+        }
+        
         //Press R to restart
         if (Input.GetKeyDown(KeyCode.R))
         {
