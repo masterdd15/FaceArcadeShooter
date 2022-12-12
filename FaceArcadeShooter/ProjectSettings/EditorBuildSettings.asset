@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CursorSystem.unity
     guid: 2b2d72d2e4ccfe741a086d6c63039022
+  - enabled: 1
+    path: Assets/Kevin/PT_Scene.unity
+    guid: 630343b5300611e489daaef39c2bdbae
   m_configObjects: {}

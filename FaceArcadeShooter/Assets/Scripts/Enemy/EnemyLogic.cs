@@ -15,6 +15,9 @@ public class EnemyLogic : MonoBehaviour
 
     [SerializeField] FBOY_STATES currentState;
 
+    //gameManager
+    [SerializeField]GameManager gm;
+
     //Navmesh Logic
     [SerializeField] private NavMeshAgent nma;
     [SerializeField] private Transform target;
@@ -41,6 +44,7 @@ public class EnemyLogic : MonoBehaviour
     {
         //When a enemy spawns in, they are set to idle until ready to walk
         currentState = FBOY_STATES.IDLE;
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         nma = gameObject.GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         target = GameObject.FindGameObjectWithTag("EnemyPoint").transform;
@@ -149,6 +153,7 @@ public class EnemyLogic : MonoBehaviour
         if(!isDying)
         {
             //Debug.Log("ENEMY DIED!");
+            gm.score += 1;
             enemAnimController.freezeEnemy();
             isDying = true;
         }
