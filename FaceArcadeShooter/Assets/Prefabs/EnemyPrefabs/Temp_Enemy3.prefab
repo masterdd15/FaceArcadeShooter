@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  gm: {fileID: 0}
   nma: {fileID: 0}
   target: {fileID: 0}
   player: {fileID: 0}
