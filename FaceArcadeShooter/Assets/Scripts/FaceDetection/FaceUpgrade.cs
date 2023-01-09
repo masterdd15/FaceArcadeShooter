@@ -76,7 +76,7 @@ public class FaceUpgrade : MonoBehaviour
         {
             for (int i = 0; i < faces.Length; i++)
             {
-                if (faceLevelWeights[i] >= 3f)
+                if (faceLevelWeights[i] >= 4f)
                 {
 
                     faceRect = faces[i];
@@ -156,5 +156,10 @@ public class FaceUpgrade : MonoBehaviour
 
         //testCursorTrans.anchoredPosition = faceCord;
         testCursorTrans.anchoredPosition = cursorMove;
+    }
+    
+    public void CloseWebcam()
+    {
+        camTex.Stop();
     }
 }

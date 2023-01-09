@@ -5767,6 +5767,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4657346748962360276, guid: 0aaf6c23ace2b5a4a8052e7af5266264,
+        type: 3}
+      propertyPath: myFace
+      value: 
+      objectReference: {fileID: 402301341}
     - target: {fileID: 4657346748962360278, guid: 0aaf6c23ace2b5a4a8052e7af5266264,
         type: 3}
       propertyPath: m_Name
@@ -7133,6 +7138,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 391298129}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &402301341 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6262985720151378092, guid: 296ca77703ab46f44b224321c210db8d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1609917358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d597aeaa41bc8244949474135b816ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &403579981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26295,7 +26312,7 @@ PrefabInstance:
     - target: {fileID: 5170972409760488379, guid: 296ca77703ab46f44b224321c210db8d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6262985718798091171, guid: 296ca77703ab46f44b224321c210db8d,
         type: 3}

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public int highscore;
     [SerializeField] TextMeshProUGUI highScoreText;
 
+    public FaceUpgrade myFace;
     private void Awake()
     {
         if(manager == null)
@@ -76,6 +77,10 @@ public class GameManager : MonoBehaviour
 
     void ResetTheGame()
     {
+        if (myFace.gameObject.activeSelf) //Make sure we are using facecam
+        {
+            myFace.CloseWebcam();
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Debug.Log("The scene has reset");
     }
